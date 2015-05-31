@@ -1,0 +1,56 @@
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="salesforce" default="ui-test">
+  <target name="install-ivy">
+    <delete dir="build/lib"/>
+    <mkdir dir="build/lib"/>
+    <get src="http://repo1.maven.org/maven2/org/apache/ivy/ivy/2.4.0/ivy-2.4.0.jar" dest="build/lib/ivy.jar" usetimestamp="true"/>
+    <path id="ivy.lib.path">
+      <fileset dir="build/lib" includes="ivy.jar"/>
+    </path>
+    <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
+  </target>
+
+  <target name="dependencies" depends="install-ivy">
+    <ivy:retrieve pattern="build/lib/[artifact]-[revision]-[classifier].[ext]" symlink="true" overwriteMode="newer"/>
+    <ivy:cachepath pathid="test.path"/>
+  </target>
+
+  <target name="compile-uitests" depends="dependencies">
+    <delete dir="build/classes/uitest"/>
+    <mkdir dir="build/classes/uitest"/>
+    <javac srcdir="uitest" destdir="build/classes/uitest" encoding="UTF-8" deprecation="yes">
+      <classpath>
+        <path refid="test.path"/>
+      </classpath>
+    </javac>
+    <copy todir="build/classes/uitest">
+      <fileset dir="uitest">
+        <exclude name="**/*.java"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="ui-test" depends="compile-uitests">
+    <delete dir="build/ui-test-results"/>
+    <mkdir dir="build/ui-test-results"/>
+
+    <junit printsummary="yes" haltonfailure="false" failureproperty="uitests-failed" fork="true">
+      <classpath>
+        <path refid="test.path"/>
+        <path path="build/classes/uitest"/>
+      </classpath>
+
+      <batchtest fork="yes" todir="build/ui-test-results">
+        <fileset dir="uitest">
+          <include name="org/selenide/examples/**/*Test.java"/>
+        </fileset>
+        <formatter type="xml"/>
+        <formatter type="plain" usefile="false"/>
+      </batchtest>
+      <sysproperty key="salesforce.username" value="${salesforce.username}"/>
+      <sysproperty key="salesforce.password" value="${salesforce.password}"/>
+      <sysproperty key="selenide.browser" value="${selenide.browser}"/>
+      <sysproperty key="BUILD_URL" value="${BUILD_URL}"/>
+    </junit>
+    <fail if="uitests-failed"/>
+  </target>
+</project>
