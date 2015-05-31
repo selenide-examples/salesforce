@@ -25,4 +25,5 @@ To run UI tests with different browser, just add this parameter to command line:
  * `ant -Dselenide.browser=phantomjs`
  * `ant -Dselenide.browser=htmlunit`
 
-P.S. To use some of these browsers, you need to install corresponding binary (chromedriver, phantomjsdriver etc).
+P.S. To use some of these browsers, you need to install corresponding 
+binary (e.g. chromedriver, phantomjs) or dependencies (e.g. htmlunit, phantomjs).

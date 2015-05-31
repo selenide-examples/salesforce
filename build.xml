@@ -1,4 +1,6 @@
 <project xmlns:ivy="antlib:org.apache.ivy.ant" name="salesforce" default="ui-test">
+  <property name="selenide.browser" value="firefox"/>
+  
   <target name="install-ivy">
     <delete dir="build/lib"/>
     <mkdir dir="build/lib"/>
