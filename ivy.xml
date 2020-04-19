@@ -6,10 +6,11 @@
   </configurations>
 
   <dependencies>
-    <dependency org="junit" name="junit" rev="4.12" conf="test->default"/>
+    <dependency org="junit" name="junit" rev="4.13" conf="test->default"/>
     <dependency org="org.hamcrest" name="hamcrest-core" rev="1.3" conf="test->default"/>
-    <dependency org="com.codeborne" name="selenide" rev="5.4.1" conf="test->default"/>
-    
+    <dependency org="com.codeborne" name="selenide" rev="5.11.0" conf="test->default"/>
+    <dependency org="org.slf4j" name="slf4j-simple" rev="1.7.30" conf="test->default"/>
+
     <!--for selenium:-->
     <dependency org="com.google.code.gson" name="gson" rev="2.8.6" conf="test->default"/>
     <dependency org="commons-logging" name="commons-logging" rev="1.2" conf="test->default"/>
