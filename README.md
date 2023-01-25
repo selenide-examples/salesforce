@@ -13,11 +13,11 @@ This command can be run either by your or your CI server (like Jenkins or Bamboo
 
 ## Prerequisites
 
-You only need to have Java, Ant and Firefox installed on your computer to run these tests.
+You only need to have Java, Ant and Chrome installed on your computer to run these tests.
 
 ## Browser configuration
 
-Selenide tests are run in Firefox by default.
+Selenide tests are run in Chrome by default.
 
 To run UI tests with different browser, just add this parameter to command line:
 
