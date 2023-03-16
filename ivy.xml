@@ -7,7 +7,7 @@
 
   <dependencies>
     <dependency org="junit" name="junit" rev="4.13.2" conf="test->default"/>
-    <dependency org="com.codeborne" name="selenide" rev="6.11.2" conf="test->default"/>
+    <dependency org="com.codeborne" name="selenide" rev="6.12.3" conf="test->default"/>
     <dependency org="org.slf4j" name="slf4j-simple" rev="2.0.6" conf="test->default"/>
 
 <!--    <dependency org="commons-logging" name="commons-logging" rev="1.2" conf="test->default"/>-->
